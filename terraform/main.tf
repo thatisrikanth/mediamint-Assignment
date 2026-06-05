@@ -6,7 +6,13 @@ terraform {
       version = "~> 5.0"
     }
   }
-  # Recommended: Configure a remote S3 backend here
+  backend "s3" {
+    bucket       = "srikanth-assignment-tf-state-bucket"
+    key          = "production/ecs-fargate-app/terraform.tfstate"
+    region       = "ap-south-2"
+    encrypt      = true
+    use_lockfile = true
+  }
 }
 
 provider "aws" {

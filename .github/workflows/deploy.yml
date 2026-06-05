@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  AWS_REGION: us-east-1                   # Replace with your target region
+  AWS_REGION: ap-south-2                  # Replace with your target region
   ECR_REPOSITORY: production-app-repo     # Matches Terraform infrastructure names
   ECS_SERVICE: production-service
   ECS_CLUSTER: production-cluster
