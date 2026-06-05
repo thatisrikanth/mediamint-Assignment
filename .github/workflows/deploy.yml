@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 env:
-  AWS_REGION: ap-south-2                  # Replace with your target region
-  ECR_REPOSITORY: production-app-repo     # Matches Terraform infrastructure names
+  AWS_REGION: ap-south-2                 
+  ECR_REPOSITORY: production-app-repo
   ECS_SERVICE: production-service
   ECS_CLUSTER: production-cluster
   CONTAINER_NAME: app
@@ -83,7 +83,6 @@ jobs:
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
 
-      # --- Automated Post-Deployment Rollback Strategy ---
       - name: Post-Deployment Verification & Rollback
         if: failure() || cancelled()
         run: |
