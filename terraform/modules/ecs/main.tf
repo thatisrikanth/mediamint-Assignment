@@ -110,7 +110,7 @@ resource "aws_ecs_task_definition" "app" {
       logDriver = "awslogs"
       options = {
         "awslogs-group"         = aws_cloudwatch_log_group.ecs.name
-        "awslogs-region"        = "us-east-1" # Update to match your region
+        "awslogs-region"        = "ap-south-2"
         "awslogs-stream-prefix" = "ecs"
       }
     }
