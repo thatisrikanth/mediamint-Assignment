@@ -64,7 +64,7 @@ jobs:
 
       - name: Download Current Task Definition
         run: |
-          aws ecs describe-task-definition --task-definition ${{ env.ECS_SERVICE }} --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition production-task --query taskDefinition > task-definition.json
 
       - name: Update Container Image inside Task Definition
         id: render-task-def
