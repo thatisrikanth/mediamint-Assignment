@@ -41,8 +41,8 @@ You must add the following **Repository Secrets** in GitHub (`Settings > Secrets
 
 | Secret Name | Description | Example |
 | :--- | :--- | :--- |
-| `AWS_ACCESS_KEY_ID` | IAM User Access Key | `AKIAIOSFODNN7EXAMPLE` |
-| `AWS_SECRET_ACCESS_KEY` | IAM User Secret Key | `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` |
+| `AWS_ACCESS_KEY_ID` | IAM User Access Key | `xxxxxxxxxxxxxxxxx` |
+| `AWS_SECRET_ACCESS_KEY` | IAM User Secret Key | `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
 
 > *Note: Ensure the IAM user associated with these keys has permissions for ECR, ECS, EC2 (VPC), IAM, ALB, and CloudWatch.*
 
