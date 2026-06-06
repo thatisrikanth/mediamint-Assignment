@@ -3,7 +3,8 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ main ]
-
+    paths:
+      - 'app/**'
 env:
   AWS_REGION: ap-south-2                 
   ECR_REPOSITORY: production-app-repo
