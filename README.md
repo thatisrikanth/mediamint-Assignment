@@ -128,3 +128,20 @@ If the deployment stabilizes but is functionally broken (e.g., serious bug not c
 Execute the following command, replacing `REVISION_NUMBER` with the known stable revision (e.g., `production-task:5`):
 ```bash
 aws ecs update-service --cluster production-cluster --service production-service --task-definition production-task:REVISION_NUMBER
+
+**Troubleshotting:**
+
+#### 🛑 Error: `An error occurred (ClientException) when calling the DescribeTaskDefinition operation: Unable to describe task definition.`
+* **Symptom:** The GitHub Actions workflow fails at the "Download Current Task Definition" step with exit code 254.
+* **Root Cause:** The pipeline passed an ECS *Service* name (e.g., `production-service`) to the `--task-definition` parameter, which strictly requires an ECS Task Definition *Family* name or full ARN.
+* **Resolution:** Update your `.github/workflows/deploy.yml` to target the family layout name instead of the service container handle:
+    ```yaml
+    # Fix: Ensure it targets the family string 'production-task'
+    aws ecs describe-task-definition --task-definition production-task --query taskDefinition > task-definition.json
+    ```
+
+#### 🛑 Symptom: Application Load Balancer returns a `503 Service Unavailable` or `502 Bad Gateway`
+* **Root Cause:** The ECS tasks are failing their Application Load Balancer target group health checks on the `/health` path.
+    * **Resolution:**
+        1. Verify your application is explicitly listening on host `0.0.0.0` and port `8000` inside your Dockerfile `CMD` layer. (Binding to `127.0.0.1` will cause health checks to fail since traffic originates from the ALB's internal network interface).
+        2. Verify that the security group assigned to your ECS Fargate tasks explicitly allows ingress TCP traffic on port `8000` originating from your ALB's security group identifier.
