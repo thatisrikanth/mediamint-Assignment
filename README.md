@@ -93,7 +93,7 @@ This project uses **ECS Rolling Updates** for application deployments.
 
 ### 4.2 Verifying Deployment Success
 * **Via Web Browser**: Visit the ALB DNS name (provided in Terraform output) and confirm the `version` JSON key matches your update.
-* **Via AWS Console**: Check `ECS > Clusters > [environment]-cluster > Services > Events`.
+* **Via AWS Console**: Check `ECS > Clusters > production-cluster > Services > Events`.
 
 ---
 
