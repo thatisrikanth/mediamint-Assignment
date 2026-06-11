@@ -6,7 +6,7 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {
-        "message": "Hello from ECS Fargate!",
+        "message": "Hello Srikanth",
         "version": os.getenv("APP_VERSION", "1.0.0"),
         "environment": os.getenv("ENVIRONMENT", "production")
     }
